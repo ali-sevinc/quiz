@@ -1,12 +1,9 @@
 import { useEffect } from "react";
-import { ActionType } from "../App";
+import { useQuizContext } from "../store/QuizContext";
 
-interface PropsType {
-  time: number;
-  dispatch: React.Dispatch<ActionType>;
-}
+export default function Timer() {
+  const { time, dispatch } = useQuizContext();
 
-export default function Timer({ time, dispatch }: PropsType) {
   const min = Math.floor(time / 60);
   const sec = time % 60;
 

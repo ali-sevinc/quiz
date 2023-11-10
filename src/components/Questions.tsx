@@ -1,16 +1,12 @@
-import { QuestionType } from "../App";
+import { useQuizContext } from "../store/QuizContext";
 import Options from "./Options";
 
-interface PropsType {
-  question: QuestionType;
-  answer: null | number;
-  onAnswer: (index: number) => void;
-}
-export default function Questions({ question, onAnswer, answer }: PropsType) {
+export default function Questions() {
+  const { questions, index } = useQuizContext();
   return (
     <div>
-      <h4>{question.question}</h4>
-      <Options question={question} onAnwser={onAnswer} answer={answer} />
+      <h4>{questions[index].question}</h4>
+      <Options />
     </div>
   );
 }

@@ -1,10 +1,7 @@
-import { QuestionType } from "../App";
-interface PropsType {
-  question: QuestionType;
-  answer: null | number;
-  onAnwser: (index: number) => void;
-}
-export default function Options({ question, onAnwser, answer }: PropsType) {
+import { useQuizContext } from "../store/QuizContext";
+export default function Options() {
+  const { questions, index, answer, handleAnsawer } = useQuizContext();
+  const question = questions[index];
   return (
     <div className="options">
       {question.options.map((option, index) => (
@@ -18,7 +15,7 @@ export default function Options({ question, onAnwser, answer }: PropsType) {
                 : "wrong"
               : ""
           }`}
-          onClick={() => onAnwser(index)}
+          onClick={() => handleAnsawer(index)}
         >
           {option}
         </button>

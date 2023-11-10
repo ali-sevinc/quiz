@@ -1,15 +1,9 @@
-interface PropsType {
-  score: number;
-  totalPoints: number;
-  question: number;
-  numQuestions: number;
-}
-export default function Progress({
-  score,
-  totalPoints,
-  question,
-  numQuestions,
-}: PropsType) {
+import { useQuizContext } from "../store/QuizContext";
+
+export default function Progress() {
+  const { answer, index, points, totalPoints, numQuestions } = useQuizContext();
+  const question = answer === null ? index : index + 1;
+
   return (
     <header className="progress">
       <progress value={question} max={numQuestions} />
@@ -21,7 +15,7 @@ export default function Progress({
       </p>
       <p>
         <strong>
-          {score}/{totalPoints}
+          {points}/{totalPoints}
         </strong>{" "}
         points
       </p>
